@@ -2,11 +2,13 @@ const express = require('express')
 const parser = require('body-parser')
 const mongoose = require('./db/models.js')
 const Occupant = mongoose.model('Occupant')
+const cors = require('cors')
 
 const app = express()
 
 app.set('port', process.env.PORT || 3000)
 app.use(parser.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
   console.log('root working')
