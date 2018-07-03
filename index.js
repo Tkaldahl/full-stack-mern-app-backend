@@ -16,6 +16,31 @@ app.get('/', (req, res) => {
     })
 })
 
+app.post('/', (req, res) => {
+  console.log(req.body)
+  Occupant.create({
+    name: req.body.name,
+    role: req.body.role,
+    age: req.body.age
+  })
+    .then((occupants) => {
+      res.json(occupants)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+})
+
+app.get('/:id', (req, res) => {
+  Occupant.findById(req.params.id)
+    .then((occupant) => {
+      res.json(occupant)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+})
+
 app.listen(app.get('port'), () => {
   console.log('Server listening on port ' + app.get('port'))
 })
