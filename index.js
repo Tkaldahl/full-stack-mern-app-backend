@@ -12,14 +12,16 @@ app.use(cors())
 
 app.get('/', (req, res) => {
   console.log('root working')
+  // console.log(Occupant.find())
   Occupant.find()
     .then((occupants) => {
+      console.log('then working')
       res.json(occupants)
     })
 })
 
 app.post('/', (req, res) => {
-  console.log(req.body)
+  console.log('Posting the following to db ' + req.body)
   Occupant.create({
     name: req.body.name,
     role: req.body.role,
